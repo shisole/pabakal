@@ -2,7 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 // Routes that require authentication (any role)
-const AUTH_ROUTES = ["/checkout", "/orders", "/account"];
+const AUTH_ROUTES = ["/checkout", "/orders", "/account", "/request"];
 
 // Routes that require admin role
 const ADMIN_ROUTES = ["/admin"];

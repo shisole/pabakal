@@ -22,6 +22,7 @@ export type PaymentMethod = "gcash" | "bank_transfer" | "cash" | "dragonpay";
 export type PaymentStatus = "pending" | "partial" | "paid" | "refunded";
 export type ProductStatus = "draft" | "active" | "sold_out" | "archived";
 export type ProductCondition = "new" | "like_new" | "good" | "fair";
+export type RequestStatus = "pending" | "reviewing" | "available" | "unavailable" | "closed";
 
 // ─── Database Interface ────────────────────────────────────────
 export interface Database {
@@ -651,6 +652,68 @@ export interface Database {
           },
         ];
       };
+
+      product_requests: {
+        Row: {
+          id: string;
+          customer_id: string;
+          product_name: string;
+          product_url: string | null;
+          description: string | null;
+          budget_min_php: number | null;
+          budget_max_php: number | null;
+          status: RequestStatus;
+          admin_response: string | null;
+          estimated_price_php: number | null;
+          responded_by: string | null;
+          responded_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          customer_id: string;
+          product_name: string;
+          product_url?: string | null;
+          description?: string | null;
+          budget_min_php?: number | null;
+          budget_max_php?: number | null;
+          status?: RequestStatus;
+          admin_response?: string | null;
+          estimated_price_php?: number | null;
+          responded_by?: string | null;
+          responded_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          product_name?: string;
+          product_url?: string | null;
+          description?: string | null;
+          budget_min_php?: number | null;
+          budget_max_php?: number | null;
+          status?: RequestStatus;
+          admin_response?: string | null;
+          estimated_price_php?: number | null;
+          responded_by?: string | null;
+          responded_at?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "product_requests_customer_id_fkey";
+            columns: ["customer_id"];
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "product_requests_responded_by_fkey";
+            columns: ["responded_by"];
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Views: Record<string, never>;
     Functions: {
@@ -668,6 +731,7 @@ export interface Database {
       payment_status: PaymentStatus;
       product_status: ProductStatus;
       product_condition: ProductCondition;
+      request_status: RequestStatus;
     };
     CompositeTypes: Record<string, never>;
   };
@@ -695,6 +759,7 @@ export type Payment = Tables<"payments">;
 export type Review = Tables<"reviews">;
 export type Notification = Tables<"notifications">;
 export type ExchangeRate = Tables<"exchange_rates">;
+export type ProductRequest = Tables<"product_requests">;
 
 // Joined types for common queries
 export type ProductWithImages = Product & {
@@ -711,5 +776,9 @@ export type ProductWithDetails = Product & {
 export type OrderWithItems = Order & {
   order_items: OrderItem[];
   payments: Payment[];
+  profiles: Profile | null;
+};
+
+export type ProductRequestWithCustomer = ProductRequest & {
   profiles: Profile | null;
 };

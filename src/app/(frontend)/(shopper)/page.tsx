@@ -112,6 +112,24 @@ export default async function HomePage() {
           </div>
         </section>
       )}
+
+      {/* Pasabuy CTA */}
+      <section className="mx-auto max-w-7xl px-4 py-12">
+        <div className="rounded-2xl bg-gradient-to-r from-accent-500 to-accent-600 p-8 text-center text-white sm:p-12">
+          <h2 className="font-heading text-2xl font-bold sm:text-3xl">
+            Can&apos;t find what you&apos;re looking for?
+          </h2>
+          <p className="mx-auto mt-3 max-w-lg text-accent-100">
+            Request any US product and we&apos;ll check availability and pricing for you.
+          </p>
+          <Link
+            href="/request"
+            className="mt-6 inline-flex items-center rounded-xl bg-white px-6 py-3 font-medium text-accent-600 transition-colors hover:bg-accent-50"
+          >
+            Request a Product
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
