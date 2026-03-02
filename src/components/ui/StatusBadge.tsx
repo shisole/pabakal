@@ -45,11 +45,20 @@ const productStatusMap: Record<string, StatusConfig> = {
   out_of_stock: { label: "Out of Stock", variant: "warning" },
 };
 
+const requestStatusMap: Record<string, StatusConfig> = {
+  pending: { label: "Pending", variant: "warning" },
+  reviewing: { label: "Reviewing", variant: "info" },
+  available: { label: "Available", variant: "success" },
+  unavailable: { label: "Unavailable", variant: "danger" },
+  closed: { label: "Closed", variant: "default" },
+};
+
 export const builtInStatusMaps = {
   order: orderStatusMap,
   payment: paymentStatusMap,
   cargo: cargoStatusMap,
   product: productStatusMap,
+  request: requestStatusMap,
 };
 
 const defaultStatusMap: Record<string, StatusConfig> = {
@@ -57,6 +66,7 @@ const defaultStatusMap: Record<string, StatusConfig> = {
   ...paymentStatusMap,
   ...cargoStatusMap,
   ...productStatusMap,
+  ...requestStatusMap,
 };
 
 export default function StatusBadge({ status, statusMap, className }: StatusBadgeProps) {
