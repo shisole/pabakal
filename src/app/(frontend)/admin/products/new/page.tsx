@@ -1,0 +1,239 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+import { Breadcrumbs } from "@/components/layout";
+import { Button, Input, Select, Textarea } from "@/components/ui";
+import { createClient } from "@/lib/supabase/client";
+import { type Category } from "@/lib/supabase/types";
+
+export default function NewProductPage() {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [submitting, setSubmitting] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    category_id: "",
+    description: "",
+    brand: "",
+    condition: "new" as string,
+    cost_usd: "",
+    selling_price_php: "",
+    compare_at_price_php: "",
+    quantity_total: "",
+    tags: "",
+    is_featured: false,
+  });
+
+  useEffect(() => {
+    async function fetchCategories() {
+      const supabase = createClient();
+      const { data } = await supabase
+        .from("categories")
+        .select("*")
+        .order("sort_order", { ascending: true });
+      if (data) setCategories(data);
+    }
+    void fetchCategories();
+  }, []);
+
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+  ) {
+    const target = e.target;
+    if (target instanceof HTMLInputElement && target.type === "checkbox") {
+      setForm((prev) => ({ ...prev, [target.name]: target.checked }));
+    } else {
+      setForm((prev) => ({ ...prev, [target.name]: target.value }));
+    }
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setSubmitting(true);
+
+    const payload = {
+      name: form.name,
+      category_id: form.category_id || null,
+      description: form.description || null,
+      brand: form.brand || null,
+      condition: form.condition,
+      cost_usd: Number.parseFloat(form.cost_usd) || 0,
+      selling_price_php: Number.parseFloat(form.selling_price_php) || 0,
+      compare_at_price_php: form.compare_at_price_php
+        ? Number.parseFloat(form.compare_at_price_php)
+        : null,
+      quantity_total: Number.parseInt(form.quantity_total, 10) || 0,
+      tags: form.tags
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean),
+      is_featured: form.is_featured,
+    };
+
+    console.log("Creating product:", payload);
+    // TODO: POST to /api/products
+    setSubmitting(false);
+  }
+
+  const conditionOptions = [
+    { value: "new", label: "New" },
+    { value: "like_new", label: "Like New" },
+    { value: "good", label: "Good" },
+    { value: "fair", label: "Fair" },
+  ];
+
+  const categoryOptions = categories.map((c) => ({ value: c.id, label: c.name }));
+
+  return (
+    <div className="mx-auto max-w-2xl">
+      <Breadcrumbs
+        items={[
+          { label: "Dashboard", href: "/admin/dashboard" },
+          { label: "Products", href: "/admin/products" },
+          { label: "New Product" },
+        ]}
+      />
+
+      <h1 className="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">New Product</h1>
+
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <Input
+          id="name"
+          name="name"
+          label="Product Name"
+          value={form.name}
+          onChange={handleChange}
+          required
+          placeholder="Enter product name"
+        />
+
+        <Select
+          id="category_id"
+          name="category_id"
+          label="Category"
+          value={form.category_id}
+          onChange={handleChange}
+          options={categoryOptions}
+          placeholder="Select a category"
+        />
+
+        <Textarea
+          id="description"
+          name="description"
+          label="Description"
+          value={form.description}
+          onChange={handleChange}
+          rows={4}
+          placeholder="Product description"
+        />
+
+        <Input
+          id="brand"
+          name="brand"
+          label="Brand"
+          value={form.brand}
+          onChange={handleChange}
+          placeholder="e.g., Nike, Apple"
+        />
+
+        <Select
+          id="condition"
+          name="condition"
+          label="Condition"
+          value={form.condition}
+          onChange={handleChange}
+          options={conditionOptions}
+        />
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <Input
+            id="cost_usd"
+            name="cost_usd"
+            label="Cost (USD)"
+            type="number"
+            step="0.01"
+            min="0"
+            value={form.cost_usd}
+            onChange={handleChange}
+            required
+            placeholder="0.00"
+          />
+
+          <Input
+            id="selling_price_php"
+            name="selling_price_php"
+            label="Selling Price (PHP)"
+            type="number"
+            step="0.01"
+            min="0"
+            value={form.selling_price_php}
+            onChange={handleChange}
+            required
+            placeholder="0.00"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <Input
+            id="compare_at_price_php"
+            name="compare_at_price_php"
+            label="Compare-at Price (PHP)"
+            type="number"
+            step="0.01"
+            min="0"
+            value={form.compare_at_price_php}
+            onChange={handleChange}
+            placeholder="Optional"
+          />
+
+          <Input
+            id="quantity_total"
+            name="quantity_total"
+            label="Quantity"
+            type="number"
+            min="0"
+            value={form.quantity_total}
+            onChange={handleChange}
+            required
+            placeholder="0"
+          />
+        </div>
+
+        <Input
+          id="tags"
+          name="tags"
+          label="Tags"
+          value={form.tags}
+          onChange={handleChange}
+          placeholder="tag1, tag2, tag3"
+        />
+
+        <div className="flex items-center gap-2">
+          <input
+            id="is_featured"
+            name="is_featured"
+            type="checkbox"
+            checked={form.is_featured}
+            onChange={handleChange}
+            className="h-4 w-4 rounded border-gray-300 text-primary-500 focus:ring-primary-500"
+          />
+          <label
+            htmlFor="is_featured"
+            className="text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
+            Featured product
+          </label>
+        </div>
+
+        <div className="flex gap-3 pt-4">
+          <Button type="submit" disabled={submitting}>
+            {submitting ? "Creating..." : "Create Product"}
+          </Button>
+          <Button type="button" variant="ghost" onClick={() => globalThis.history.back()}>
+            Cancel
+          </Button>
+        </div>
+      </form>
+    </div>
+  );
+}
