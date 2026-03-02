@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 
+import DevLoginBanner from "@/components/dev/DevLoginBanner";
+
 import "./globals.css";
 
 const inter = Inter({
@@ -35,7 +37,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${inter.variable} ${plusJakarta.variable}`}
       suppressHydrationWarning
     >
-      <body className="font-sans min-h-screen flex flex-col">{children}</body>
+      <body className="font-sans min-h-screen flex flex-col">
+        {process.env.NODE_ENV === "development" && <DevLoginBanner />}
+        {children}
+      </body>
     </html>
   );
 }
