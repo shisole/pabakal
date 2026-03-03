@@ -1232,6 +1232,126 @@ const PRODUCTS_BY_CATEGORY: Record<string, ProductSeed[]> = {
   ],
 };
 
+// ─── Unsplash Product Images ──────────────────────────────────
+const UNSPLASH_IMAGES: Record<string, string[]> = {
+  electronics: [
+    "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=600&h=600&fit=crop", // airpods
+    "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600&h=600&fit=crop", // charger
+    "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop", // mouse
+    "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=600&h=600&fit=crop", // ssd
+    "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&h=600&fit=crop", // speaker
+    "https://images.unsplash.com/photo-1546868871-af0de0ae72be?w=600&h=600&fit=crop", // smartwatch
+    "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&h=600&fit=crop", // streaming stick
+    "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=600&h=600&fit=crop", // power bank
+    "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=600&h=600&fit=crop", // headphones
+    "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=600&fit=crop", // kindle
+    "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&h=600&fit=crop", // cable
+    "https://images.unsplash.com/photo-1563297007-0686b7003af7?w=600&h=600&fit=crop", // gaming mouse
+    "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&h=600&fit=crop", // chromecast
+  ],
+  "beauty-skincare": [
+    "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&h=600&fit=crop", // moisturizer
+    "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&h=600&fit=crop", // serum
+    "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=600&fit=crop", // sunscreen
+    "https://images.unsplash.com/photo-1631214500115-598fc2cb8ada?w=600&h=600&fit=crop", // mascara
+    "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&h=600&fit=crop", // exfoliant
+    "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&h=600&fit=crop", // lip liner
+    "https://images.unsplash.com/photo-1556227702-d1e4e7b5c232?w=600&h=600&fit=crop", // body wash
+    "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&h=600&fit=crop", // cc cream
+    "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=600&fit=crop", // hair treatment
+    "https://images.unsplash.com/photo-1570194065650-d99fb4b38b17?w=600&h=600&fit=crop", // acne treatment
+    "https://images.unsplash.com/photo-1595535373192-fc8935bacd89?w=600&h=600&fit=crop", // fragrance mist
+    "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600&h=600&fit=crop", // sponge set
+    "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=600&h=600&fit=crop", // cleanser
+  ],
+  fashion: [
+    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop", // sneakers
+    "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&h=600&fit=crop", // jeans
+    "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=600&fit=crop", // hoodie
+    "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&h=600&fit=crop", // running shoes
+    "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=600&fit=crop", // backpack
+    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&h=600&fit=crop", // sunglasses
+    "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600&h=600&fit=crop", // thermal wear
+    "https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=600&h=600&fit=crop", // underwear pack
+    "https://images.unsplash.com/photo-1494496195158-c3becb4f2475?w=600&h=600&fit=crop", // high-top sneakers
+    "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&h=600&fit=crop", // kanken backpack
+    "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&h=600&fit=crop", // polo shirt
+    "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&h=600&fit=crop", // watch
+    "https://images.unsplash.com/photo-1539185441755-769473a23570?w=600&h=600&fit=crop", // retro sneakers
+  ],
+  "health-supplements": [
+    "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&h=600&fit=crop", // vitamins
+    "https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=600&h=600&fit=crop", // multivitamin
+    "https://images.unsplash.com/photo-1593095948071-474c5cc2c182?w=600&h=600&fit=crop", // protein powder
+    "https://images.unsplash.com/photo-1577401239170-897942555fb3?w=600&h=600&fit=crop", // fish oil
+    "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=600&h=600&fit=crop", // probiotics
+    "https://images.unsplash.com/photo-1550572017-4fcdbb59cc32?w=600&h=600&fit=crop", // pain relief
+    "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=600&h=600&fit=crop", // gummies
+    "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=600&h=600&fit=crop", // vitamin c
+    "https://images.unsplash.com/photo-1585435557343-3b0929ea0a49?w=600&h=600&fit=crop", // sleep aid
+    "https://images.unsplash.com/photo-1576186726115-4d51596775d1?w=600&h=600&fit=crop", // nutrition shake
+    "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=600&h=600&fit=crop", // topical ointment
+    "https://images.unsplash.com/photo-1559591937-eae77e553adb?w=600&h=600&fit=crop", // toothpaste
+  ],
+  "food-snacks": [
+    "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?w=600&h=600&fit=crop", // chocolate almonds
+    "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=600&h=600&fit=crop", // chocolate squares
+    "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=600&h=600&fit=crop", // pretzels
+    "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=600&h=600&fit=crop", // canned food
+    "https://images.unsplash.com/photo-1598511726623-d2e9996e2eae?w=600&h=600&fit=crop", // peanut butter
+    "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&h=600&fit=crop", // cookies
+    "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=600&h=600&fit=crop", // gummy bears
+    "https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=600&h=600&fit=crop", // chocolate bars
+    "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=600&h=600&fit=crop", // chips
+    "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=600&h=600&fit=crop", // candy
+    "https://images.unsplash.com/photo-1530016724061-f81a23a9e8c6?w=600&h=600&fit=crop", // nutella
+    "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=600&h=600&fit=crop", // mixed nuts
+    "https://images.unsplash.com/photo-1517578239113-b03992dcdd25?w=600&h=600&fit=crop", // hot cocoa
+  ],
+  "home-kitchen": [
+    "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&h=600&fit=crop", // tumbler
+    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=600&fit=crop", // pressure cooker
+    "https://images.unsplash.com/photo-1602607312530-f0bfab42cc90?w=600&h=600&fit=crop", // candle
+    "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=600&h=600&fit=crop", // mixing bowls
+    "https://images.unsplash.com/photo-1574269910231-bc508785e534?w=600&h=600&fit=crop", // hand mixer
+    "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&h=600&fit=crop", // cleaner
+    "https://images.unsplash.com/photo-1603199506016-5d54eb9fe5f4?w=600&h=600&fit=crop", // dinnerware
+    "https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?w=600&h=600&fit=crop", // water bottle
+    "https://images.unsplash.com/photo-1585515320310-259814833e62?w=600&h=600&fit=crop", // cast iron skillet
+    "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=600&h=600&fit=crop", // glass storage
+    "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&h=600&fit=crop", // cleaning wipes
+    "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600&h=600&fit=crop", // travel mug
+  ],
+  "baby-kids": [
+    "https://images.unsplash.com/photo-1584839404210-0a6d637fb9f9?w=600&h=600&fit=crop", // diapers
+    "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&h=600&fit=crop", // toy phone
+    "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?w=600&h=600&fit=crop", // lego
+    "https://images.unsplash.com/photo-1607004659127-1342d3f3bce5?w=600&h=600&fit=crop", // baby wipes
+    "https://images.unsplash.com/photo-1522771930-78848d9293e8?w=600&h=600&fit=crop", // baby clothes
+    "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&h=600&fit=crop", // playdoh
+    "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=600&fit=crop", // baby wash
+    "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=600&h=600&fit=crop", // toy cars
+    "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=600&fit=crop", // infant formula
+    "https://images.unsplash.com/photo-1604917621956-10dfa7cce307?w=600&h=600&fit=crop", // kids backpack
+    "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&h=600&fit=crop", // crayons
+    "https://images.unsplash.com/photo-1566004100477-7b3ba27b7a76?w=600&h=600&fit=crop", // playard
+  ],
+  "sports-outdoors": [
+    "https://images.unsplash.com/photo-1523362628745-0c100150b504?w=600&h=600&fit=crop", // sports bottle
+    "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=600&fit=crop", // running shorts
+    "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=600&h=600&fit=crop", // fitness tracker
+    "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&h=600&fit=crop", // workout shirt
+    "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=600&fit=crop", // yoga mat
+    "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=600&fit=crop", // yeti bottle
+    "https://images.unsplash.com/photo-1501554728187-ce583db33af7?w=600&h=600&fit=crop", // daypack
+    "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&h=600&fit=crop", // swim goggles
+    "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=600&fit=crop", // foam roller
+    "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600&h=600&fit=crop", // gps watch
+    "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&h=600&fit=crop", // tent
+    "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=600&fit=crop", // massage gun
+  ],
+};
+
 // ─── Seed Products ─────────────────────────────────────────────
 interface SeedProduct {
   id: string;
@@ -1325,7 +1445,12 @@ async function seedProducts(adminId: string, cargos: SeedCargo[]): Promise<SeedP
       const isFeatured = productIndex <= 15;
       const slug = slugify(p.name);
 
-      const imageUrl = `https://placehold.co/600x600/e2e8f0/475569?text=${encodeURIComponent(p.name.slice(0, 20))}`;
+      const categoryImages = UNSPLASH_IMAGES[categorySlug] ?? [];
+      const imgIndex = (productIndex - 1) % (categoryImages.length || 1);
+      const imageUrl =
+        categoryImages.length > 0
+          ? `${categoryImages[imgIndex]}&crop=center`
+          : `https://placehold.co/600x600/e2e8f0/475569?text=${encodeURIComponent(p.name.slice(0, 20))}`;
 
       const { data: product, error: prodError } = await supabase
         .from("products")
@@ -1365,12 +1490,16 @@ async function seedProducts(adminId: string, cargos: SeedCargo[]): Promise<SeedP
 
       // Product images (1-3 per product)
       const imageCount = randomBetween(1, 3);
+      const crops = ["center", "top", "left"];
       const images = [];
       for (let i = 0; i < imageCount; i++) {
-        const label = i === 0 ? p.name.slice(0, 20) : `${p.name.slice(0, 15)} ${i + 1}`;
+        const photoUrl =
+          categoryImages.length > 0
+            ? `${categoryImages[(imgIndex + i) % categoryImages.length]}&crop=${crops[i]}`
+            : `https://placehold.co/600x600/e2e8f0/475569?text=${encodeURIComponent(p.name.slice(0, 20))}`;
         images.push({
           product_id: product.id,
-          url: `https://placehold.co/600x600/e2e8f0/475569?text=${encodeURIComponent(label)}`,
+          url: photoUrl,
           alt_text: `${p.name} - image ${i + 1}`,
           sort_order: i,
         });

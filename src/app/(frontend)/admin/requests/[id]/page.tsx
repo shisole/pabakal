@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeftIcon } from "@/components/icons";
 import { Breadcrumbs } from "@/components/layout";
 import { Badge } from "@/components/ui";
-import { formatPhp } from "@/lib/helpers/pricing";
+import { formatUsd } from "@/lib/helpers/pricing";
 import { createClient } from "@/lib/supabase/server";
 import { type RequestStatus } from "@/lib/supabase/types";
 
@@ -133,15 +133,13 @@ export default async function RequestDetailPage({ params }: RequestDetailPagePro
             )}
 
             <div>
-              <dt className="text-xs font-medium text-gray-500 dark:text-gray-400">Budget</dt>
+              <dt className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                Source Price (USD)
+              </dt>
               <dd className="text-sm text-gray-900 dark:text-gray-100">
-                {request.budget_min_php && request.budget_max_php
-                  ? `${formatPhp(request.budget_min_php)} – ${formatPhp(request.budget_max_php)}`
-                  : request.budget_min_php
-                    ? `From ${formatPhp(request.budget_min_php)}`
-                    : request.budget_max_php
-                      ? `Up to ${formatPhp(request.budget_max_php)}`
-                      : "Not specified"}
+                {request.source_price_usd == null
+                  ? "Not specified"
+                  : formatUsd(request.source_price_usd)}
               </dd>
             </div>
 
