@@ -64,7 +64,7 @@ begin
       'New Product Request',
       'A customer requested: ' || new.product_name,
       'product_request',
-      new.id::text,
+      new.id,
       'product_request'
     );
   end loop;
@@ -87,7 +87,7 @@ begin
       'Request Update',
       'Your request for "' || new.product_name || '" has been updated.',
       'product_request',
-      new.id::text,
+      new.id,
       'product_request'
     );
   end if;

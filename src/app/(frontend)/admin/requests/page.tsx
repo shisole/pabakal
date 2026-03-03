@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/layout";
 import { Badge, EmptyState } from "@/components/ui";
-import { formatPhp } from "@/lib/helpers/pricing";
+import { formatUsd } from "@/lib/helpers/pricing";
 import { createClient } from "@/lib/supabase/server";
 import { type RequestStatus } from "@/lib/supabase/types";
 
@@ -38,7 +38,7 @@ export default async function RequestsPage({ searchParams }: RequestsPageProps) 
   let query = supabase
     .from("product_requests")
     .select(
-      "id, product_name, budget_min_php, budget_max_php, status, created_at, profiles!product_requests_customer_id_fkey(full_name)",
+      "id, product_name, source_price_usd, status, created_at, profiles!product_requests_customer_id_fkey(full_name)",
     )
     .order("created_at", { ascending: false });
 
@@ -88,7 +88,9 @@ export default async function RequestsPage({ searchParams }: RequestsPageProps) 
               <tr className="border-b border-gray-200 dark:border-gray-700">
                 <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Customer</th>
                 <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Product</th>
-                <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Budget</th>
+                <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">
+                  Source Price
+                </th>
                 <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Status</th>
                 <th className="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Date</th>
               </tr>
@@ -96,14 +98,6 @@ export default async function RequestsPage({ searchParams }: RequestsPageProps) 
             <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
               {requests.map((req) => {
                 const profile = req.profiles as { full_name: string | null } | null;
-                const budget =
-                  req.budget_min_php && req.budget_max_php
-                    ? `${formatPhp(req.budget_min_php)} – ${formatPhp(req.budget_max_php)}`
-                    : req.budget_min_php
-                      ? `From ${formatPhp(req.budget_min_php)}`
-                      : req.budget_max_php
-                        ? `Up to ${formatPhp(req.budget_max_php)}`
-                        : "—";
                 return (
                   <tr key={req.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50">
                     <td className="px-4 py-3 text-gray-700 dark:text-gray-300">
@@ -117,7 +111,9 @@ export default async function RequestsPage({ searchParams }: RequestsPageProps) 
                         {req.product_name}
                       </Link>
                     </td>
-                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300">{budget}</td>
+                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300">
+                      {req.source_price_usd == null ? "—" : formatUsd(req.source_price_usd)}
+                    </td>
                     <td className="px-4 py-3">
                       <Badge variant={statusVariant[req.status] ?? "default"} size="sm">
                         {statusLabel[req.status] ?? req.status}

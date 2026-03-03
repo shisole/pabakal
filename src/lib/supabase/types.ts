@@ -660,8 +660,7 @@ export interface Database {
           product_name: string;
           product_url: string | null;
           description: string | null;
-          budget_min_php: number | null;
-          budget_max_php: number | null;
+          source_price_usd: number | null;
           status: RequestStatus;
           admin_response: string | null;
           estimated_price_php: number | null;
@@ -676,8 +675,7 @@ export interface Database {
           product_name: string;
           product_url?: string | null;
           description?: string | null;
-          budget_min_php?: number | null;
-          budget_max_php?: number | null;
+          source_price_usd?: number | null;
           status?: RequestStatus;
           admin_response?: string | null;
           estimated_price_php?: number | null;
@@ -690,8 +688,7 @@ export interface Database {
           product_name?: string;
           product_url?: string | null;
           description?: string | null;
-          budget_min_php?: number | null;
-          budget_max_php?: number | null;
+          source_price_usd?: number | null;
           status?: RequestStatus;
           admin_response?: string | null;
           estimated_price_php?: number | null;

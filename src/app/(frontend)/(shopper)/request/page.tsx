@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { StatusBadge, builtInStatusMaps } from "@/components/ui";
-import { formatPhp } from "@/lib/helpers/pricing";
+import { formatPhp, formatUsd } from "@/lib/helpers/pricing";
 import { createClient } from "@/lib/supabase/server";
 
 import RequestForm from "./RequestForm";
@@ -59,6 +59,11 @@ export default async function RequestPage() {
                     </h3>
                     <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
                       {new Date(req.created_at).toLocaleDateString()}
+                      {req.source_price_usd != null && (
+                        <span className="ml-2">
+                          &middot; Source price: {formatUsd(req.source_price_usd)}
+                        </span>
+                      )}
                     </p>
                   </div>
                   <StatusBadge status={req.status} statusMap={builtInStatusMaps.request} />
